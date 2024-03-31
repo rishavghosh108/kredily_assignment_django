@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+</head>
+<body>
+    <h1>{{ message }}</h1>
+    <div class="main">
+
+        <div class="left">
+            <form action="{% url 'employee_details' %}" method="get">
+                <h1>get employee details</h1>
+                <label for="employee_id">
+                Employee id: <input type="number" name="employee_id" id="employee_id" placeholder="employee id" required></label><br>
+                <button type="submit">employee_details</button>
+            </form>
+        </div>
+        
+        <div class="department">
+            <h1>Get Department Report</h1>
+            <a href="{% url 'department-report' %}">
+                <button>department-report</button>
+            </a>
+        </div>
+
+        <div class="add">
+            <form action="{% url 'add_employee' %}" method="post">
+                <h1>Add a New Employee</h1>
+                {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="name of employee" required><br>
+                <label for="designation">Designation:</label>
+                <input type="text" id="designation" name="designation" placeholder="please enter designation" required><br>
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" placeholder="please enter department name" required><br>
+                <label for="date_of_joining">Date of Joining:</label>
+                <input type="date" id="date_of_joining" name="doj" required><br><br>
+                <button type="submit">Add Employee</button>
+            </form>
+        </div>
+
+        <div class="attendance">
+            <form action="{% url 'attendance' %}" method="post">
+                <h1>Add Attendance</h1>
+                {% csrf_token %}
+                <label for="user">Employee id:</label>
+                <input type="text" id="user" name="user" placeholder="employee id" required><br>
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" placeholder="Present or Absent" required><br>
+                <label for="doa">Date of Attendance:</label>
+                <input type="date" id="doa" name="date" required><br><br>
+                <button type="submit">Add Attendance</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="table_center">
+        <div class="table">
+            <h1>List of Employees</h1>
+            <table border="2px solid black">
+                {% if employees %}
+                <tr><th>id</th><th>employee name</th><th>designation</th></tr>
+                {% endif %}
+                {% for employee in employees %}
+                    <tr><td>{{ employee.id }}</td> <td>{{ employee.name }}</td> <td>{{ employee.designation }}</td></tr>
+                {% empty %}
+                    <li>No employees found</li>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+    .main{
+        display: flex;
+        justify-content: space-around;
+    }
+    h1{
+        background-color: skyblue;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    button{
+        font-size: 15px;
+        border: 2px solid red;
+        background-color: skyblue;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    label{
+        font-size: large;
+    }
+    input{
+        border: none;
+        outline: none;
+        border-bottom: 2px solid black;
+        padding: 5px;
+        margin: 5px;
+        font-size: 15px;
+    }
+    .left{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        border: 1px solid black;
+        width: 23%;
+    }
+    .department{
+        display: flex;
+        border: 1px solid black;
+        width: 23%;
+        flex-direction: column;
+        padding: 5px;
+    }
+    .add{
+        border: 1px solid black;
+        display: flex;
+        padding: 5px;
+        width: 23%;
+        justify-content: center;
+    }
+    .attendance{
+        display: flex;
+        justify-content: center;
+        width: 23%;
+        border: 1px solid black;
+    }
+    .table{
+        display: flex;
+        justify-content: center;
+        width: 23%;
+        height: 20%;
+        border: 1px solid black;
+        flex-direction: column;
+        overflow: scroll;
+    }
+    .table_center{
+        display: flex;
+        justify-content: center;
+        margin: 1%;
+    }
+</style>

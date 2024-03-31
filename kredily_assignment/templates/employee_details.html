@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+</head>
+<body>
+    <h1>Employee Details</h1>
+    <p class="emp"><b>Name:</b> {{ employee.name }}</p>
+    <p class="emp"><b>Designation:</b> {{ employee.designation }}</p>
+    <p class="emp"><b>Department:</b> {{ employee.department }}</p>
+    <p class="emp"><b>Date of Joining:</b> {{ employee.doj }}</p>
+
+    <br><hr>
+
+    <br>
+    <div class="center">
+        <div class="atten">
+            <h2>Attendance Details</h2>
+            {% if attendance %}
+                <table border="2px solid black">
+                    <tr><th>Attendance Date:</th><th>Attendance Status:</th></tr>
+                {% for x in attendance %}
+                    <tr><td>{{ x.date }}</td> <td>{{ x.status }}</td></tr> 
+                {% endfor %}
+                </table>
+            {% else %}
+                <p>No attendance record found</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    h1{
+        text-align: center;
+        background-color: skyblue;
+        height: 80px;
+    }
+    .emp{
+        margin-left: 15%;
+        font-size: 20px;
+    }
+    .atten{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        font-size: 20px;
+        width: 40%;
+    }
+    hr{
+        width: 90%;
+    }
+    .center{
+        display: flex;
+        justify-content: center;
+    }
+</style>

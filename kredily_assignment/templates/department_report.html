@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Report</title>
+</head>
+<body>
+    <h1>Department Report</h1>
+    <table border="2px solid black">
+        <thead>
+            <tr>
+                <th>Department</th>
+                <th>Employee Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for department in departments %}
+            <tr>
+                <td>{{ department.department }}</td>
+                <td>{{ department.employee_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    h1{
+        background-color: skyblue;
+        height: 80px;
+    }
+    table{
+        font-size: 20px;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 50%;
+    }
+</style>
